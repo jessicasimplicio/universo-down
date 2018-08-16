@@ -49,12 +49,12 @@ $(document).ready(function(){
 			<p>
 				${newTask} </br> 
 				${date} </br>
-				<button class="delete" data-post-id="${postFromDB.key}">Apaga</button>
-  			<button class="edit" data-post-id="${postFromDB.key}">Edita</button>
+				<button class="delete" data-post-id=${postFromDB.key}>Apaga</button>
+  			<button class="edit" data-post-id=${postFromDB.key}>Edita</button>
 			<p>`);
 
 		$(`button.delete[data-post-id="${postFromDB.key}"]`).click(function() {	
-			database.ref('posts/' + USER_ID + "/" + childKey).remove();
+			database.ref('posts/' + USER_ID + "/" + postFromDB.key).remove();
 			$(this).parent().remove();
 		});
 		$(`button.edit[data-post-id="${postFromDB.key}"]`).click(function() {	
