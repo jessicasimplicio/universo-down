@@ -5,7 +5,6 @@ $(document).ready(function(){
 		event.preventDefault();
 		var email = $(".sign-in-email").val();
 		var password = $(".sign-in-password").val();
-		console.log(email, password);
 
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(function(response) {
@@ -24,7 +23,6 @@ $(document).ready(function(){
 		event.preventDefault();
 		//window.location = "tasks.html?id=" + response.user.uid;
 		window.location = "register.html"
-		console.log("AJSIJI")
 
 	})
 
