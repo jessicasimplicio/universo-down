@@ -21,6 +21,13 @@ opacity:0.65;
 filter: alpha(opacity=65);
 }
 
-h1{
-  font-size: calc(50px + 3vw);
+#title{
+  font-size: calc(16px + 3vw);
+}
+
+#back-friends{
+  background-color: #fa7c92;
+  opacity:0.65;
+  -moz-opacity: 0.65;
+  filter: alpha(opacity=65);
 }
