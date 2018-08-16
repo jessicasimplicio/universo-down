@@ -2,13 +2,25 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
-body {
-  margin: 0 auto;
-  background-color: blue;
+body{
+  background: url(../assets/maxresdefault.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 
-header{
+nav{
+background-color: #70c1df;
+opacity:0.65;
+-moz-opacity: 0.65;
+filter: alpha(opacity=65);
+}
 
+h1{
+  font-size: calc(50px + 3vw);
 }
