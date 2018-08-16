@@ -8,6 +8,11 @@ $('#myModal').on('shown.bs.modal', function () {
 
 $(document).ready(function(){
 
+	database.ref('users/' + USER_ID).once('value')
+		.then(function(snapshot) {
+  		$(".name").append(`${snapshot.val().name}`);  		
+		});
+
 	//carrega coisas já salvas no feed 
 	database.ref('posts/' + USER_ID).once('value')
 		.then(function(snapshot) {
@@ -15,8 +20,19 @@ $(document).ready(function(){
   		snapshot.forEach(function(childSnapshot) {
   			var childKey = childSnapshot.key; 
   			var childData = childSnapshot.val();
-  			$(".posts-list").prepend(`<p>${childData.text} </br> ${childData.date}</p>`); 
-  			
+  			$(".posts-list").prepend(`
+  				<p>
+  					${childData.text}</br>
+  					${childData.date} </br>
+  					<button class="delete" data-post-id="${childKey}">Apaga</button>
+  					<button class="edit" data-post-id="${childKey}">Edita</button>
+  				</p>
+  			`);
+
+  			$(`button.delete[data-post-id="${childKey}"]`).click(function() {	
+					database.ref('posts/' + USER_ID + "/" + childKey).remove();
+					$(this).parent().remove();
+				}); 	
   		})
 		});
 
@@ -25,18 +41,33 @@ $(document).ready(function(){
 		event.preventDefault();
 		var newTask = $(".posts-input").val();
 		var date = moment().subtract(6, 'days').calendar(); 
-		database.ref('posts/' + USER_ID).push({ //adiciona no banco de dados
+		var postFromDB = database.ref('posts/' + USER_ID).push({ //adiciona no banco de dados
   		text: newTask,
   		date: date
- 		});
-		$(".posts-list").prepend(`<li>${newTask} </br> ${date} </li>`); //mostra na tela assim que adiciona
-	})
+ 			});
+			console.log(postFromDB.key);
+			$(".posts-list").prepend(`
+			<p>
+				${newTask} </br> 
+				${date} </br>
+				<button class="delete" data-post-id="${postFromDB.key}">Apaga</button>
+  			<button class="edit" data-post-id="${postFromDB.key}">Edita</button>
+			<p>`);
+
+		$(`button.delete[data-post-id="${postFromDB.key}"]`).click(function() {	
+			database.ref('posts/' + USER_ID + "/" + childKey).remove();
+			$(this).parent().remove();
+		});
+		$(`button.edit[data-post-id="${postFromDB.key}"]`).click(function() {	
+		});
+	});
+
+
 
 	$(".people-list").click(function(){
 		window.location = "friends.html?id=" + USER_ID; 
 	})
 	
-	/*
 	//pega todos os amigos:
 	database.ref('friendship/' + USER_ID).once('value')
 		.then(function(snapshot) {
@@ -62,7 +93,7 @@ $(document).ready(function(){
 		});
 	}
 
-
+/*
 ///=================CHECAR ESSA PARTE =============================================
 	database.ref('posts/').on('value', function(snapshot) {
 			$(".posts-list").html("");
