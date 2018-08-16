@@ -8,8 +8,7 @@ $(document).ready(function(){
 
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(function(response) {
-			//window.location = "tasks.html";
-			window.location = "tasks.html?id=" + response.user.uid;
+			window.location = "newsfeed.html?id=" + response.user.uid;
 		})
 		.catch(function(error) {
   		// Handle Errors here.
@@ -21,7 +20,6 @@ $(document).ready(function(){
 
 	$(".btn-register-page").click(function() {
 		event.preventDefault();
-		//window.location = "tasks.html?id=" + response.user.uid;
 		window.location = "register.html"
 
 	})

@@ -1,5 +1,4 @@
 var database = firebase.database();
-var USER_ID = '';
 
 $(document).ready(function(){
 
@@ -8,6 +7,7 @@ $(document).ready(function(){
 		var name = $(".sign-up-name").val()
 		var email = $(".sign-up-email").val();
 		var password = $(".sign-up-password").val();
+		var USER_ID = '';
 
 		console.log(email, password);
 
