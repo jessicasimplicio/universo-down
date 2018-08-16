@@ -16,7 +16,6 @@ $(document).ready(function(){
 	//carrega coisas já salvas no feed 
 	database.ref('posts/' + USER_ID).once('value')
 		.then(function(snapshot) {
-  		//console.log(snapshot.val()); //Pega as tarefas do usuario
   		snapshot.forEach(function(childSnapshot) {
   			var childKey = childSnapshot.key; 
   			var childData = childSnapshot.val();
@@ -33,7 +32,7 @@ $(document).ready(function(){
 					database.ref('posts/' + USER_ID + "/" + childKey).remove();
 					$(this).parent().remove();
 				}); 	
-  		})
+  		});
 		});
 
 	//Salva no  DB
