@@ -61,7 +61,7 @@ $(document).ready(function(){
 		});
 	});
 
-
+	$()
 
 	$(".people-list").click(function(){
 		window.location = "friends.html?id=" + USER_ID; 
@@ -91,6 +91,10 @@ $(document).ready(function(){
 			});
 		});
 	}
+
+	$(".logo").click(function() {
+		window.location = "newsfeed.html?id=" + USER_ID;
+	})
 
 /*
 ///=================CHECAR ESSA PARTE =============================================

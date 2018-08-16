@@ -15,6 +15,8 @@ $(document).ready(function(){
 
 					$(`button.follow[people-id="${peopleId}"]`).click(function() {
 						storeInDB(peopleId, childData.name);
+						$(`button.follow[people-id="${peopleId}"]`).toggle();
+
 					});
 				}
 			});
@@ -27,5 +29,8 @@ $(document).ready(function(){
 		});
 	}
 
+	$(".logo").click(function() {
+		window.location = "newsfeed.html?id=" + USER_ID;
+	})
 
 });
