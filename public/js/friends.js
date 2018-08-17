@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 	database.ref('users').once('value')
 		.then(function(snapshot) {
-			var people = [];
+			var people = []; 
 			snapshot.forEach(function(childSnapshot) {
 				if(USER_ID !== childSnapshot.key ){
 					var peopleId = childSnapshot.key;
